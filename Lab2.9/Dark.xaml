@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="WindowStyle">
+        <Setter Property="Control.Background" Value="DimGray"/>
+    </Style>
+    <Style x:Key="GridStyle">
+        <Setter Property="Grid.Background" Value="Gray"/>
+    </Style>
+    <Style x:Key="MenuStyle" BasedOn="{StaticResource WindowStyle}">
+        <Setter Property="Menu.Foreground" Value="LightGray"/>
+    </Style>
+    <Style x:Key="MenuItemStyle">
+        <Setter Property="MenuItem.Foreground" Value="Black"/>
+    </Style>
+    <Style x:Key="ToolBarTrayStyle" BasedOn="{StaticResource WindowStyle}"/>
+    <Style x:Key="ToolBarStyle" BasedOn="{StaticResource ToolBarTrayStyle}"/>
+    <Style x:Key="RichTBStyle" BasedOn="{StaticResource WindowStyle}">
+        <Setter Property="RichTextBox.Background" Value="Black"/>
+        <Setter Property="RichTextBox.Foreground" Value="White"/>
+        <Setter Property="RichTextBox.SelectionBrush" Value="DarkCyan"/>
+    </Style>
+</ResourceDictionary>

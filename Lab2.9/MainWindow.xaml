@@ -1,0 +1,82 @@
+﻿<Window x:Class="Lab2._8.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab2._8"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Style="{DynamicResource WindowStyle}">
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="OpenExecuted"/>
+        <CommandBinding Command="Save" Executed="SaveExecuted"/>
+        <CommandBinding Command="Close" Executed="CloseExecuted"/>
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top" VerticalContentAlignment="Top" Style="{DynamicResource MenuStyle}">
+            <MenuItem Header="_File">
+                <MenuItem Name="open" Header="_Open" Command="Open" Style="{DynamicResource MenuItemStyle}"/>
+                <MenuItem Name="save" Header="_Save" Command="Save" Style="{DynamicResource MenuItemStyle}"/>
+                <Separator/>
+                <MenuItem Name="exit" Header="_Exit" Command="Close" Style="{DynamicResource MenuItemStyle}"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Name="cut" Header="_Cut" Command="Cut" Style="{DynamicResource MenuItemStyle}"/>
+                <MenuItem Name="copy" Header="_Copy" Command="Copy" Style="{DynamicResource MenuItemStyle}"/>
+                <MenuItem Name="paste" Header="_Paste" Command="Paste" Style="{DynamicResource MenuItemStyle}"/>
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Name="dark" Header="_Dark Theme" IsCheckable="True" Click="dark_Click" Style="{DynamicResource MenuItemStyle}"/>
+            </MenuItem>
+        </Menu>
+        <Grid Style="{DynamicResource GridStyle}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ToolBarTray Grid.Row="0" Margin="3" Style="{DynamicResource ToolBarTrayStyle}">
+                <ToolBar Margin="5" Padding="5" Style="{DynamicResource ToolBarStyle}">
+                    <ComboBox Name="fontFamily"
+                              Width="200" Margin="3" Padding="3"
+                              SelectedIndex="0" ItemsSource="{StaticResource fonts}"
+                              SelectionChanged="fontFamily_SelectionChanged">
+                    </ComboBox>
+                    <ComboBox Name="fontSize"
+                              Width="50" Margin="3" Padding="3"
+                              SelectedIndex="2" ItemsSource="{StaticResource fontSizes}"
+                              SelectionChanged="fontSize_SelectionChanged">
+                    </ComboBox>
+                    <StackPanel Width="15" VerticalAlignment="Center">
+                        <Button x:Name="increaseFontSize" Content="▲" Height="auto" FontSize="9" Command="IncreaseFontSize"/>
+                        <Button x:Name="decreaseFontSize" Content="▼" Height="auto" FontSize="9" Command="DecreaseFontSize"/>
+                    </StackPanel>
+                </ToolBar>
+                <ToolBar Margin="5" Padding="5" Style="{DynamicResource ToolBarStyle}">
+                    <Button x:Name="bold" Command="ToggleBold">
+                        <Image Source="Icons/text-bold-icon.png"/>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="italic" Command="ToggleItalic">
+                        <Image Source="Icons/text-italic-icon.png"/>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="underline" Command="ToggleUnderline">
+                        <Image Source="Icons/text-underline-icon.png"/>
+                    </Button>
+                </ToolBar>
+                <ToolBar Margin="5" Padding="5" Style="{DynamicResource ToolBarStyle}">
+                    <StackPanel VerticalAlignment="Center">
+                        <RadioButton x:Name="blackColor" Content="Чёрный" IsChecked="True" Click="fontColor_Checked"/>
+                        <RadioButton x:Name="redColor" Content="Красный" Click="fontColor_Checked"/>
+                    </StackPanel>
+                </ToolBar>
+            </ToolBarTray>
+            <RichTextBox x:Name="richTB"
+                         FontSize="16" FontFamily="Arial"
+                         Grid.Row="1" Margin="5" Padding="5"
+                         VerticalScrollBarVisibility="Auto" Style="{DynamicResource RichTBStyle}">
+            </RichTextBox>
+        </Grid>
+    </DockPanel>
+</Window>
